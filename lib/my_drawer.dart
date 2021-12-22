@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:estudos_flutter1/home_page.dart';
 import 'package:estudos_flutter1/person_counter.dart';
 import 'package:estudos_flutter1/imc_calculator.dart';
+import 'package:estudos_flutter1/currency_converter.dart';
 
 
 class MyDrawer extends StatelessWidget {
@@ -25,9 +26,14 @@ class MyDrawer extends StatelessWidget {
         MaterialPageRoute(builder: (context) => ImcCalculator()));
   }
 
+  void gotoCurrencyConverter() {
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) => CurrencyConverter()));
+  }
+
     return Drawer(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(60, 40, 60, 80),
+          padding: const EdgeInsets.fromLTRB(40, 40, 60, 80),
           child: ListView(
             children: [
               TextButton.icon(
@@ -44,6 +50,11 @@ class MyDrawer extends StatelessWidget {
                   onPressed: gotoImcCalculator,
                   icon: const Icon(Icons.calculate, color: Colors.black),
                   label: const Text("Calculadora de IMC")),
+              const SizedBox(height: 10),
+              TextButton.icon(
+                  onPressed: gotoCurrencyConverter,
+                  icon: const Icon(Icons.money, color: Colors.black),
+                  label: const Text("Conversor de Moedas")),
             ],
           ),
         ),
