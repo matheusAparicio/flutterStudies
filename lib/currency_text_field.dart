@@ -121,6 +121,7 @@ class _CurrencyTextFieldState extends State<CurrencyTextField> {
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: widget.borderColor),
             ),
+            prefixText: widget.labelDefaultName == "Reais" ? "R\$" : widget.labelDefaultName == "Dólares" ? "\$" : "€",
           ),
           onChanged: ((_) {
             updateFields(widget.labelDefaultName);
