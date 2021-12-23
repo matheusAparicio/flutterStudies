@@ -18,17 +18,17 @@ class MyDrawer extends StatelessWidget {
 
     void gotoPersonCounter() {
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => PersonCounter()));
+        context, MaterialPageRoute(builder: (context) => const PersonCounter()));
   }
 
   void gotoImcCalculator() {
     Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => ImcCalculator()));
+        MaterialPageRoute(builder: (context) => const ImcCalculator()));
   }
 
   void gotoCurrencyConverter() {
     Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => CurrencyConverter()));
+        MaterialPageRoute(builder: (context) => const CurrencyConverter()));
   }
 
     return Drawer(

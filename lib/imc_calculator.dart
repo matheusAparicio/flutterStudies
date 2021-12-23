@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:estudos_flutter1/my_drawer.dart';
 
 class ImcCalculator extends StatefulWidget {
-  ImcCalculator({Key? key}) : super(key: key);
+  const ImcCalculator({Key? key}) : super(key: key);
 
   @override
   _ImcCalculatorState createState() => _ImcCalculatorState();

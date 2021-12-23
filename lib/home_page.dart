@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {}, icon: const Icon(Icons.refresh, color: Colors.white))
         ],
       ),
-      drawer: MyDrawer(),
+      drawer: const MyDrawer(),
       body: Center(
         child: Column(children: const []),
       ),

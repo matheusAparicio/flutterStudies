@@ -2,24 +2,31 @@ import 'package:estudos_flutter1/currency_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:estudos_flutter1/my_drawer.dart';
 
+TextEditingController realInput = TextEditingController();
+TextEditingController dollarInput = TextEditingController();
+TextEditingController euroInput = TextEditingController();
+
+  FocusNode focusReal = FocusNode();
+  FocusNode focusDol = FocusNode();
+  FocusNode focusEur = FocusNode();
+
 class CurrencyConverter extends StatefulWidget {
   const CurrencyConverter({Key? key}) : super(key: key);
 
   @override
-  _CurrencyConverterState createState() => _CurrencyConverterState();
+  CurrencyConverterState createState() => CurrencyConverterState();
 }
 
-class _CurrencyConverterState extends State<CurrencyConverter> {
-  TextEditingController realInput = TextEditingController();
-  TextEditingController dollarInput = TextEditingController();
-  TextEditingController euroInput = TextEditingController();
-
+class CurrencyConverterState extends State<CurrencyConverter> {
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
+    //var _width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Conversor de Moedas"),
+        title: const Text(
+          "Conversor de Moedas",
+          style: TextStyle(color: Colors.black87),
+        ),
         centerTitle: true,
         backgroundColor: Colors.amber,
       ),
@@ -28,14 +35,26 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
         child: SizedBox(
           child: Column(
             children: [
-              const Icon(Icons.money, color: Colors.amber, size: 125),
+              const Padding(
+                padding: EdgeInsets.all(35),
+                child: Icon(Icons.money, color: Colors.amber, size: 125),
+              ),
               Row(),
               CurrencyTextField(
-                  labelDefaultName: "Reais: ", inputController: realInput),
+                labelDefaultName: "Reais",
+                inputController: realInput,
+                focusNode: focusReal,
+              ),
               CurrencyTextField(
-                  labelDefaultName: "Dólares: ", inputController: dollarInput),
+                labelDefaultName: "Dólares",
+                inputController: dollarInput,
+                focusNode: focusDol,
+              ),
               CurrencyTextField(
-                  labelDefaultName: "Euros: ", inputController: euroInput),
+                labelDefaultName: "Euros",
+                inputController: euroInput,
+                focusNode: focusEur,
+              ),
             ],
           ),
           width: MediaQuery.of(context).size.width * 0.6,

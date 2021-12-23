@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:estudos_flutter1/my_drawer.dart';
 
 class PersonCounter extends StatefulWidget {
-  PersonCounter({Key? key}) : super(key: key);
+  const PersonCounter({Key? key}) : super(key: key);
 
   @override
   _PersonCounterState createState() => _PersonCounterState();
