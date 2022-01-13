@@ -62,7 +62,7 @@ class MyDrawer extends StatelessWidget {
                 style: const ButtonStyle(alignment: Alignment.centerLeft),
                 onPressed: gotoPersonCounter,
                 icon: const Icon(Icons.person, color: Colors.black),
-                label: const Text("Contador de Pessoas")),
+                label: const Text("Contador de Pessoas", style: TextStyle(color: Colors.deepOrange))),
             const SizedBox(height: 10),
             TextButton.icon(
                 style: const ButtonStyle(alignment: Alignment.centerLeft),

@@ -33,6 +33,7 @@ class _PersonCounterState extends State<PersonCounter> {
         title: const Text("Contador de Pessoas"),
         centerTitle: true,
         actions: const [],
+        backgroundColor: Colors.deepOrange[800]
       ),
       drawer: const MyDrawer(),
       body: Column(
