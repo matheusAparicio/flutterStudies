@@ -46,6 +46,15 @@ class _ToDoListState extends State<ToDoList> {
     });
   }
 
+  Future<Null> _refresh() async {
+     await Future.delayed(const Duration(seconds: 1));
+     _toDoList.sort((a, b) {
+       if (a["ok"] && !b["ok"]) return -1;
+       else if (!a["ok"] && b["ok"]) return -1;
+       else return 0;
+     });
+  }
+
   @override
   Widget build(BuildContext context) {
     // ignore: prefer_const_constructors
