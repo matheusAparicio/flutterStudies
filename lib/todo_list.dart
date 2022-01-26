@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'my_drawer.dart';
@@ -48,18 +47,19 @@ class _ToDoListState extends State<ToDoList> {
     }
   }
 
+  // ignore: prefer_void_to_null
   Future<Null> _refresh() async {
     await Future.delayed(const Duration(seconds: 1));
     setState(() {
       _toDoList.sort((a, b) {
-        if (a["ok"] && !b["ok"])
+        if (a["ok"] && !b["ok"]) {
           return 1;
-        else if (!a["ok"] && b["ok"])
+        } else if (!a["ok"] && b["ok"]) {
           return -1;
-        else
+        } else {
           return 0;
+        }
       });
-      
       _saveData();
     });
   }

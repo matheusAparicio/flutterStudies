@@ -10,29 +10,10 @@ class MyDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void gotoHomePage() {
+
+    void goTo(page) {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const HomePage()));
-    }
-
-    void gotoPersonCounter() {
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => const PersonCounter()));
-    }
-
-    void gotoImcCalculator() {
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => const ImcCalculator()));
-    }
-
-    Future<dynamic> gotoCurrencyConverter() {
-      return Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => const CurrencyConverter()));
-    }
-
-    void gotoToDoList() {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const ToDoList()));
+          context, MaterialPageRoute(builder: (context) => page));
     }
 
     Widget buttonDrawer(
@@ -56,32 +37,48 @@ class MyDrawer extends StatelessWidget {
                 buttonName: "Página Inicial",
                 buttonColor: Colors.black,
                 buttonIcon: Icons.home,
-                buttonPressed: ()=>gotoHomePage()),
+                buttonPressed: ()=>goTo(const HomePage())),
             const SizedBox(height: 45),
             TextButton.icon(
                 style: const ButtonStyle(alignment: Alignment.centerLeft),
-                onPressed: gotoPersonCounter,
+                onPressed: ()=>goTo(const PersonCounter()),
                 icon: const Icon(Icons.person, color: Colors.black),
                 label: const Text("Contador de Pessoas", style: TextStyle(color: Colors.deepOrange))),
             const SizedBox(height: 10),
             TextButton.icon(
                 style: const ButtonStyle(alignment: Alignment.centerLeft),
-                onPressed: gotoImcCalculator,
+                onPressed: ()=>goTo(const ImcCalculator()),
                 icon: const Icon(Icons.calculate, color: Colors.black),
                 label: const Text("Calculadora de IMC")),
             const SizedBox(height: 10),
             TextButton.icon(
                 style: const ButtonStyle(alignment: Alignment.centerLeft),
-                onPressed: gotoCurrencyConverter,
+                onPressed: ()=>goTo(const CurrencyConverter()),
                 icon: const Icon(Icons.attach_money, color: Colors.black),
                 label: const Text("Conversor de Moedas",
                     style: TextStyle(color: Colors.amber))),
             const SizedBox(height: 10),
             TextButton.icon(
               style: const ButtonStyle(alignment: Alignment.centerLeft),
-              onPressed: gotoToDoList,
+              onPressed: ()=>goTo(const ToDoList()),
               icon: const Icon(Icons.list, color: Colors.black),
               label: Text("Lista de Tarefas",
+                  style: TextStyle(color: Colors.blue[800])),
+            ),
+            const SizedBox(height: 10),
+            TextButton.icon(
+              style: const ButtonStyle(alignment: Alignment.centerLeft),
+              onPressed: ()=>goTo(const ToDoList()),
+              icon: const Icon(Icons.list, color: Colors.black),
+              label: Text("Buscador de GIFs",
+                  style: TextStyle(color: Colors.blue[800])),
+            ),
+            const SizedBox(height: 10),
+            TextButton.icon(
+              style: const ButtonStyle(alignment: Alignment.centerLeft),
+              onPressed: ()=>goTo(const ToDoList()),
+              icon: const Icon(Icons.list, color: Colors.black),
+              label: Text("Agenda de Contatos",
                   style: TextStyle(color: Colors.blue[800])),
             ),
           ],
