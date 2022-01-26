@@ -36,23 +36,32 @@ class _ToDoListState extends State<ToDoList> {
   }
 
   void _addToDo() {
-    setState(() {
-      Map<String, dynamic> newToDo = Map();
-      newToDo["title"] = taskController.text;
-      newToDo["ok"] = false;
-      taskController.text = "";
-      _toDoList.add(newToDo);
-      _saveData();
-    });
+    if (taskController.text.trim() != "") {
+      setState(() {
+        Map<String, dynamic> newToDo = Map();
+        newToDo["title"] = taskController.text;
+        newToDo["ok"] = false;
+        taskController.text = "";
+        _toDoList.add(newToDo);
+        _saveData();
+      });
+    }
   }
 
   Future<Null> _refresh() async {
-     await Future.delayed(const Duration(seconds: 1));
-     _toDoList.sort((a, b) {
-       if (a["ok"] && !b["ok"]) return -1;
-       else if (!a["ok"] && b["ok"]) return -1;
-       else return 0;
-     });
+    await Future.delayed(const Duration(seconds: 1));
+    setState(() {
+      _toDoList.sort((a, b) {
+        if (a["ok"] && !b["ok"])
+          return 1;
+        else if (!a["ok"] && b["ok"])
+          return -1;
+        else
+          return 0;
+      });
+      
+      _saveData();
+    });
   }
 
   @override
@@ -62,10 +71,11 @@ class _ToDoListState extends State<ToDoList> {
       appBar: AppBar(
         title: const Text("Lista de Tarefas"),
         centerTitle: true,
-        actions: [
-          IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.refresh, color: Colors.white))
+        actions: const [
+          // IconButton(
+          //   onPressed: _refresh,
+          //   icon: const Icon(Icons.refresh, color: Colors.white),
+          // )
         ],
         backgroundColor: toDoMainColor,
       ),
@@ -97,10 +107,15 @@ class _ToDoListState extends State<ToDoList> {
             ),
           ),
           Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.only(top: 10),
-              itemCount: _toDoList.length,
-              itemBuilder: buildItem,
+            child: RefreshIndicator(
+              backgroundColor: toDoMainColor,
+              color: Colors.white,
+              onRefresh: _refresh,
+              child: ListView.builder(
+                padding: const EdgeInsets.only(top: 10),
+                itemCount: _toDoList.length,
+                itemBuilder: buildItem,
+              ),
             ),
           ),
         ],
@@ -149,15 +164,18 @@ class _ToDoListState extends State<ToDoList> {
 
           final snack = SnackBar(
             content: Text("Tarefa \"${_lastRemoved["title"]}\" foi removida."),
-            action: SnackBarAction(label: "Desfazer",
-            onPressed: () {
-              _toDoList.insert(_lastRemovedPos??0, _lastRemoved);
-              _saveData();
-            }),
+            action: SnackBarAction(
+                label: "Desfazer",
+                onPressed: () {
+                  setState(() {
+                    _toDoList.insert(_lastRemovedPos ?? 0, _lastRemoved);
+                    _saveData();
+                  });
+                }),
           );
 
+          ScaffoldMessenger.of(context).removeCurrentSnackBar();
           ScaffoldMessenger.of(context).showSnackBar(snack);
-
         });
       },
     );

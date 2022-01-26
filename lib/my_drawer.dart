@@ -73,7 +73,7 @@ class MyDrawer extends StatelessWidget {
             TextButton.icon(
                 style: const ButtonStyle(alignment: Alignment.centerLeft),
                 onPressed: gotoCurrencyConverter,
-                icon: const Icon(Icons.money, color: Colors.black),
+                icon: const Icon(Icons.attach_money, color: Colors.black),
                 label: const Text("Conversor de Moedas",
                     style: TextStyle(color: Colors.amber))),
             const SizedBox(height: 10),

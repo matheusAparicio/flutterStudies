@@ -37,7 +37,7 @@ class CurrencyConverterState extends State<CurrencyConverter> {
             children: [
               const Padding(
                 padding: EdgeInsets.all(35),
-                child: Icon(Icons.money, color: Colors.amber, size: 125),
+                child: Icon(Icons.attach_money, color: Colors.amber, size: 125),
               ),
               Row(),
               CurrencyTextField(
